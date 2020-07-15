@@ -1,0 +1,31 @@
+file:
+  domain: http://127.0.0.1:8081/
+  path: e:/pic/
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.yed.bean
+server:
+  port: 8081
+spring:
+  application:
+    name: springboot-mybatis-redis-demo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/xiaosi?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+  mvc:
+    static-path-pattern: /**
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  redis:
+    database: 0
+    host: 192.168.146.129
+    port: 6379
+  resources:
+    static-locations: file:${file.path},classpath:static/
+  servlet:
+    multipart:
+      max-file-size: 10240000
+      max-request-size: 10240000

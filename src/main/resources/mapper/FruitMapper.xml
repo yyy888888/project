@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yed.dao.FruitDao">
+    <select id="getFList" resultType="fruits">
+        select * from fruit
+        <where>
+            <if test="f.name!=null and f.name!=''">
+                and name like '%${f.name}%'
+            </if>
+            <if test="f.sprice!=null and f.sprice!=''and f.eprice!=null and f.eprice!=''">
+                and price between ${f.sprice} and ${f.eprice}
+            </if>
+            <if test="f.sheng!=null and f.sheng!=''">
+                and sheng = ${f.sheng}
+            </if>
+
+        </where>
+    </select>
+    <insert id="addFruit" useGeneratedKeys="true" keyProperty="id">
+        insert into fruit(name,pic,price,address,chuan,cdate,sheng,shi)
+         values(#{name},#{pic},#{price},#{address},#{chuan},#{cdate},#{sheng},#{shi})
+    </insert>
+    <update id="updateFruit">
+        update fruit set name=#{name},pic=#{pic},price=#{price},address=#{address},chuan=#{chuan},cdate=#{cdate}
+        where id=#{id}
+    </update>
+</mapper>
